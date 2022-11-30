@@ -1,6 +1,10 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
+"NeurIPS":
   color: "#00369f"
 
-"PhysRev":
-  url: https://journals.aps.org/
+"PhysRep":
+  color: "#00369f"
+
+"JSTAT":
+  color: "#00369f"
+  
+"preprint":

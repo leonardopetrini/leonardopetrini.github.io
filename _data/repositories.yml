@@ -1,12 +1,13 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - leonardopetrini
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - pcsl-epfl/diffeomorphism
+  - leonardopetrini/diffeo-sota
+  - leonardopetrini/cnn-receptive-fields
+  - leonardopetrini/torchaffine
+  - leonardopetrini/learning-italian-names
+  - leonardopetrini/jamming_neural_nets
+  - leonardopetrini/CERN_btagging
+  - leonardopetrini/relativestability
+  - pcsl-epfl/regressionsphere
