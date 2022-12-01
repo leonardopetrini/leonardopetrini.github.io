@@ -40,7 +40,7 @@ repo_theme_dark: dark           # https://github.com/anuraghazra/github-readme-s
 # will use title and url fields
 # Take a look to https://github.com/jekyll/jekyll-feed for more customization
 
-rss_icon: true
+rss_icon: false
 
 # -----------------------------------------------------------------------------
 # Layout
@@ -113,7 +113,7 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: my notes # blog_name will be displayed in your blog page
-blog_nav_title: notes # your blog must have a title for it to be displayed in the nav bar
+blog_nav_title: # notes # your blog must have a title for it to be displayed in the nav bar
 blog_description: notes on _stuff_ made public
 permalink: /blog/:year/:title/
 
