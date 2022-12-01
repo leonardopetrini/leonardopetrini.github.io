@@ -23,4 +23,4 @@ Most of my time I spend as a PhD student of *deep learning theory* at the [Physi
 
 I'm a [*machine learning experimentalist*](https://ml-eval.github.io/assets/pdf/science_ml_proposal_2am.pdf), my focus is in the rigorous study of existing deep neural networks to discover fundamental recurring laws that deepen our understanding of their _unreasonable_ effectiveness. When deep nets get too complicated I resort to [*toy models* 🐮](https://en.wikipedia.org/wiki/Spherical_cow) that reproduce the observed phenomena and allow for quantitative understanding.
 
-A more serious summary of my research can be found in the publications tab.
+A more serious summary of my research can be found under publications.
