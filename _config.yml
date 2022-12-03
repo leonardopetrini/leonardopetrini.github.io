@@ -113,8 +113,8 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: my notes # blog_name will be displayed in your blog page
-blog_nav_title: notes # your blog must have a title for it to be displayed in the nav bar
-blog_description: notes on _stuff_ made public
+blog_nav_title: my notes # your blog must have a title for it to be displayed in the nav bar
+blog_description: # notes on _stuff_ made public
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -320,6 +320,7 @@ enable_project_categories:  true   # enables categorization of projects into
                                    # multiple categories
 enable_medium_zoom:         true   # enables image zoom feature (as on medium.com)
 enable_progressbar:         true   # enables a horizontal progress bar linked to the vertical scroll position
+show_drafts:                true   # show drafts from _drafts
 
 # -----------------------------------------------------------------------------
 # Library versions
