@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2022-11-23 07:59:00-0400
+date: 2022-10-23 12:59:00+0100
 inline: true
 ---
 
-How do CNNs aggregate spatial information? 🖼️ Check out our latest [preprint here](https://arxiv.org/abs/2210.01506)! 📜
+I ran my first [half-marathon](https://www.strava.com/activities/8005702830) in Lausanne! 🏃‍♂️🏅
 
