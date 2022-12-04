@@ -147,6 +147,8 @@ Start to sound reasonable, don't they?!
 
 In the literature, the models we are introducing here are called [*n-grams*](https://en.wikipedia.org/wiki/N-gram), where `n` stands for the model *order*.
 
+***Note:*** How to sample from higher order models starts to be less intuitive, check the *post scriptum* below if you are interested in a more detailed walkthrough!
+
 Better and better results can be obtained by going to higher and higher order correlations, for example, for `n=3` we get,
  
 ~~~text
@@ -190,3 +192,14 @@ flamiana.    0
 Do modern artificial neural networks 🤖 overcome these limitations and give better results?  Moreover, how do we decide if a model is better than another, beyond anecdotal evidence?
 
 We will give answers to these questions in the following posts on this topic, stay tuned. 📻
+
+<br/><br/>
+## **PS:** How to generate new words from the model
+
+We briefly illustrate here how to generate new words given the model. We consider the case `n=3`. We built the matrix $$N(c_i, c_{i-1}, c_{i-2})$$ by counting the occurrences of the three consecutive chars $$c_{i-2}c_{i-1}c_i$$ in the data samples. Notice that all words in the dataset are now augmented with `n-1` leading `"."` and `1` trailing `"."`. 
+
+We normalize the first dimension of $$N$$ to obtain the conditional probability of a character given the previous `n-1`s,
+
+$$P(c_i \,\vert\, c_{i-1}, c_{i-2}) = \frac{N(c_i, c_{i-1}, c_{i-2})}{\sum_{c_i} N(c_i, c_{i-1}, c_{i-2})}.$$
+
+Finally, to sample a new word, we make use of our special character `"."`. The first char is sampled according to $$c_1 \sim P(c \,\vert\, .\,,\, .\,).$$ Then, we sample $$c_2$$ from $$P(c \,\vert\, c_1,\, .\,)$$, $$c_3$$ from $$P(c \,\vert\, c_2, c_1)$$ and so on, until we sample the stopping char `"."`. We got our new word $$c_1c_2\dots c_n$$, where $$c_n = \,.\,$$.
