@@ -10,7 +10,11 @@
       <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}" />
     {%- endif -%}
     {% include head.html %}
-    </head>
+
+    {% if site.google_analytics %}
+    {% include analytics.html %}
+    {% endif %}
+  </head>
 
   <!-- Body -->
   <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">

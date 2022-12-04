@@ -9,7 +9,7 @@ categories: ml-projects blogposts
 
 This series of posts is largely inspired by Andrej Karpathy's [*makemore*](https://github.com/karpathy/makemore). In my experience as an ML researcher, I've never found a more clear and sharp teacher than Andrej, his ability to walk you through the basics without being pedantic, and give insightful comments on the way, I find it unique. I highly recommend his (ongoing) YouTube series on [Neural Networks: from Zero to Hero](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ).
 
-So, let's start! As the title suggests, we are going to build generative models for *Italian first names* that will learn from examples. Such models will be able to generate new words from scratch or complete a series of characters. I will make use two names datasets publicly available on GitHub:
+So, let's start! As the title suggests, we are going to build generative models for *Italian first names* that will learn from examples. Such models will be able to generate new words from scratch or complete a series of characters. I will make use of two names datasets publicly available on GitHub:
 
 1. [`names_1`](https://gist.github.com/pdesterlich/2562329) contains ~9k first names of people living in Italy, not necessarily *strictly* Italian. There are e.g. some French names;
 2. [`names_2`](https://github.com/filippotoso/nomi-cognomi-italiani/blob/master/json/nomi-italiani.json) contains ~1.7k first names.
