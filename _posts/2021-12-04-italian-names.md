@@ -1,15 +1,15 @@
 ---
 layout: post
-title: Italian names generator 🤌, Part I
+title: Italian names generator 🤌 (Part I)
 date: 2022-12-03 16:42:00+0100
 description: building an ML model for generating Italian names
 tags: nlp machine-learning
 categories: ml-projects blogposts
 ---
 
-**Disclaimer:** This series of posts is largely inspired by Andrej Karpathy's [*makemore*](https://github.com/karpathy/makemore). In my experience as an ML researcher, I've never found a more clear and sharp teacher than Andrej, his ability to walk you through the basics without being pedantic, and give insightful comments on the way, I find it unique. I highly recommend his (ongoing) YouTube series on [Neural Networks: from Zero to Hero](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ).
+This series of posts is largely inspired by Andrej Karpathy's [*makemore*](https://github.com/karpathy/makemore). In my experience as an ML researcher, I've never found a more clear and sharp teacher than Andrej, his ability to walk you through the basics without being pedantic, and give insightful comments on the way, I find it unique. I highly recommend his (ongoing) YouTube series on [Neural Networks: from Zero to Hero](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ).
 
-Then, we can start! As the title suggests, we are going to build models for *Italian first names* that will learn from examples. Such models will be able to generate new words from scratch or complete a series of characters. I found two datasets of names publicly available on GitHub:
+So, let's start! As the title suggests, we are going to build generative models for *Italian first names* that will learn from examples. Such models will be able to generate new words from scratch or complete a series of characters. I will make use two names datasets publicly available on GitHub:
 
 1. [`names_1`](https://gist.github.com/pdesterlich/2562329) contains ~9k first names of people living in Italy, not necessarily *strictly* Italian. There are e.g. some French names;
 2. [`names_2`](https://github.com/filippotoso/nomi-cognomi-italiani/blob/master/json/nomi-italiani.json) contains ~1.7k first names.
@@ -26,24 +26,24 @@ and `names_2`,
 romoaldo donatella nicoletta aristeo natalia rainelda serafina susanna
 ~~~
 
-In the following, I will consider the larger one, `names_1`.
+In the following, I will consider the larger dataset, `names_1`.
 
 The datasets, together with the notebook reproducing the results shown in this post can be found at [github/leonardopetrini/learning-italian-names](https://github.com/leonardopetrini/learning-italian-names).
 
 ## 0-th order model: random guessing
 
-Let's start with the simplest thing we could do, and a very bad baseline: *random guessing*. I call it 0-th order method because we give the model no information about the statistics of characters in the words. This point will become clearer later on when we go to higher order. 
+Let's start with the simplest thing we could do, and a very bad baseline: *random guessing*. I call it a 0th-order method because we give the model no information about the statistics of characters in the words. This point will become clearer later on when we go to higher order.
 
 In this context, random guessing consists in taking a dictionary of all the characters that occur in our words dataset and sampling uniformly at random from them. 
 
-The dictionary of chars apperating in `names_1` is the following
+The dictionary of chars appearing in `names_1` is the following
 
 ~~~text
 ' ' 'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o'
 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z' 'à' 'è' 'ì' 'ò' 'ù' 
 ~~~
 
-You can notice that to the 26 letters of the Latin alphabet we added letters with accents, and the blank, as some Italian names are composite, for a total of `32` chars.
+You can notice that to the 26 letters of the Latin alphabet we added accented vowels, and the blank, as some Italian names are composite, for a total of `32` chars.
 
 We add the char `'.'` to the dictionary as a placeholder indicating the word end, and append it to all words as well. This makes our dictionary of length `L=33`.
 
@@ -64,13 +64,13 @@ ktmxktnsypd fxpks pagzsraàuyìytèjujjàiqwjpaqwè.
 
 Clearly not Italian, nor words! ❌
 
-Indeed, one of the first things to notice is that words are incredibly longer than typical names. This is because the `'.'` will occur every 33 characters on average, making the average word length =33, much larger than the average word length in `names_1` of `7.1`.
+Indeed, one of the first things we notice is that words are incredibly longer than typical names. This is because the `'.'` will occur, on average, every 33 characters, making the average word length =33, much larger than the average word length in `names_1` of `7.1`.
 
-We start to understand that the first necessary step is to account for the relative frequency of occurrence of different characters.
+We start to understand that the first necessary step is to account for the relative occurrence frequency  of different characters.
 
 ## 1-st order model: average char occurrence
 
-In this section, we start to learn from data. As hinted in the previous sections, the 1st order statistics we can get from our dataset consist of accounting for how often each element in the vocabulary appear in Italian names.
+In this section, we start to learn from data. As hinted above, the 1st order statistics we can get from our dataset consist of accounting for how often each element in the vocabulary appears in Italian names.
 
 To do so, we count how many times (`N`) each character appears. Then, we normalize the counting and obtain the probability `p` for char occurrence. These values are reported in the table below.
 
@@ -85,7 +85,7 @@ To do so, we count how many times (`N`) each character appears. Then, we normali
 |`p`|0.0096|0.0010|0.0663|0.0291|0.0347|0.0155|0.0135|0.0009|0.0001|0.0004|0.0098|0.0001|0.0001|0.0000|0.0000|0.0001|0.1236|
 
 <br/><br/>
-Notice that the special character appears 9111 times, which corresponds to the dataset size. Moreover, letters like `j, k, w, x, y` are very rare, while vowels are very common, except for the letter `u`.
+Notice that the special character `"."` appears 9111 times, which corresponds to the dataset size. Moreover, letters like `j, k, w, x, y` are very rare, while vowels are very common, except for the letter `u`.
 
 Similarly to what we did for random guessing, we sample new words by sequentially sampling characters, this time accordingly to `p`, until we hit `"."`. Here some results,
 
@@ -102,7 +102,7 @@ aoieueaneaa.
 b.
 ~~~
 
-Words length is now reasonable, and vowels appear much more often, as they should. But none of these words could be mistaken for an Italian name.
+Words length is now reasonable, and vowels appear much more often, as they should. Still, none of these words can be mistaken for an Italian name.
 
 ## 2-nd order model: pairwise correlations
 
@@ -187,6 +187,6 @@ flamiana.    0
 
 3. **Long-range context.** When the average word length gets large (`>>n`), n-grams fail to capture long-range correlations between characters.
 
-Do modern artificial neural networks overcome these limitations and give better results?  Moreover, how do we decide if a model is better than another, beyond anecdotal evidence?
+Do modern artificial neural networks 🤖 overcome these limitations and give better results?  Moreover, how do we decide if a model is better than another, beyond anecdotal evidence?
 
 We will give answers to these questions in the following posts on this topic, stay tuned. 📻
