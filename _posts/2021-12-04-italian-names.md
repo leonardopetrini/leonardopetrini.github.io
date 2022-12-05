@@ -3,9 +3,8 @@ layout: post
 title: Italian names generator 🤌 (Part I)
 date: 2022-12-03 16:42:00+0100
 description: building an ML model for generating Italian names
-summary: building an ML model for generating Italian names
 tags: nlp machine-learning
-image: /assets/img/pairwise_n_it_1.png
+image: pairwise_n_it_1.png
 categories: ml-projects blogposts
 ---
 
