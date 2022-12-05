@@ -110,7 +110,7 @@ Now we are starting to understand the game of incorporating data statistics into
 
 Similarly to the above case, this is done by making a table of all possible character pairs, computing their occurrence `N`, and normalizing it to obtain a probability `p`. Then, we look at the current character, we go to the corresponding row of `p` and sample the next char accordingly.
 
-Now you may ask, but how do we choose the first character?
+Now you may ask: how do we choose the first character?
 To do that, we resort to a simple trick: we append to all words' beginnings our special `"."`, similarly to what we did for word ends. In this way, the row of `p` corresponding to `"."` will tell us what's the probability that a given name starts with any of the letters in the vocabulary.
 
 The table `N` for char pairs is shown in the figure.
@@ -196,10 +196,10 @@ We will give answers to these questions in the following posts on this topic, st
 <br/><br/>
 ## **PS:** How to generate new words from the model
 
-We briefly illustrate here how to generate new words given the model. We consider the case `n=3`. We built the matrix $$N(c_i, c_{i-1}, c_{i-2})$$ by counting the occurrences of the three consecutive chars $$c_{i-2}c_{i-1}c_i$$ in the data samples. Notice that all words in the dataset are now augmented with `n-1` leading `"."` and `1` trailing `"."`. 
+We briefly illustrate here how to generate new words given the model. We consider the case `n=3`. We built the matrix $$N(c_i, c_{i-1}, c_{i-2})$$ by counting the occurrences of the three consecutive chars $$c_{i-2}c_{i-1}c_i$$ in the data samples. Notice that all words in the dataset are now augmented with `n-1` leading `"."` and `1` trailing `"."`. This is to capture the statistics of the first `n-1` characters, which do not have `n-1` predecessors.
 
 We normalize the first dimension of $$N$$ to obtain the conditional probability of a character given the previous `n-1`s,
 
 $$P(c_i \,\vert\, c_{i-1}, c_{i-2}) = \frac{N(c_i, c_{i-1}, c_{i-2})}{\sum_{c_i} N(c_i, c_{i-1}, c_{i-2})}.$$
 
-Finally, to sample a new word, we make use of our special character `"."`. The first char is sampled according to $$c_1 \sim P(c \,\vert\, .\,,\, .\,).$$ Then, we sample $$c_2$$ from $$P(c \,\vert\, c_1,\, .\,)$$, $$c_3$$ from $$P(c \,\vert\, c_2, c_1)$$ and so on, until we sample the stopping char `"."`. We got our new word $$c_1c_2\dots c_n$$, where $$c_n = \,.\,$$.
+Finally, to sample a new word, we make use of our special character `"."`. The first char is sampled according to $$c_1 \sim P(c \,\vert\, .\,,\, .\,).$$ Then, we sample $$c_2$$ from $$P(c \,\vert\, c_1,\, .\,)$$, $$c_3$$ from $$P(c \,\vert\, c_2, c_1)$$ and so on, until we sample the stopping char `"."`. We got our new word $$c_1c_2\dots c_m$$, where $$c_m = \,.\,$$.
