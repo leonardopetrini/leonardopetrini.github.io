@@ -3,9 +3,10 @@ layout: post
 title: Italian names generator 🤌 (Part I)
 date: 2022-12-03 16:42:00+0100
 description: building an ML model for generating Italian names
+summary: building an ML model for generating Italian names
 tags: nlp machine-learning
-categories: ml-projects blogposts
 image: /assets/img/pairwise_n_it_1.png
+categories: ml-projects blogposts
 ---
 
 This series of posts is largely inspired by Andrej Karpathy's [*makemore*](https://github.com/karpathy/makemore). In my experience as an ML researcher, I've never found a more clear and sharp teacher than Andrej, his ability to walk you through the basics without being pedantic, and give insightful comments on the way, I find it unique. I highly recommend his (ongoing) YouTube series on [Neural Networks: from Zero to Hero](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ).
