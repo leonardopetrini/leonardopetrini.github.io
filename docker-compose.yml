@@ -5,8 +5,10 @@ services:
     image: amirpourmand/al-folio
     command: bash -c "
       rm -f Gemfile.lock
-      && bundler exec jekyll serve --watch --port=8080 --host=0.0.0.0 --livereload --verbose"
+      && bundler exec jekyll serve --watch --future --port=8080 --host=0.0.0.0 --livereload --verbose"
     ports:
       - 8080:8080
+    # environment:
+    #   - JEKYLL_ENV=development
     volumes:
       - .:/srv/jekyll
