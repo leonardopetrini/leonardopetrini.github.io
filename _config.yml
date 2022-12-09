@@ -117,6 +117,9 @@ blog_nav_title: my notes # your blog must have a title for it to be displayed in
 blog_description: # notes on _stuff_ made public
 permalink: /blog/:year/:title/
 
+# Show Future posts
+future: true
+
 # Pagination
 pagination:
   enabled: true
