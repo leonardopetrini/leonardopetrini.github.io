@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Measuring a model goodness: the likelihood  (🤌 Part II)"
+title: "Italian names generator 🤌 (Part II)"
 date:   2022-12-18 8:00:00+0100
-description: measuring the *goodness* of generative models
+description: "measuring the *goodness* of generative models: the likelihood"
 tags: nlp machine-learning likelihood
 image: likelihood-def.png
 categories: ml-projects blogposts
