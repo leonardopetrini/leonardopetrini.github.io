@@ -9,8 +9,8 @@ categories: ml-projects blogposts
 
 The **cross-entropy loss** that is so much used in classification tasks is nothing but... the **negative log-likelihood** in disguise! 🥸 In this short post, we will clarify this point and make the connection explicit.
 
-Let's consider a dataset of input-label pairs $$\{x^i, y^i\}_{i=1}^N$$ similar to what we considered in the last post. For Italian names, $$x^i$$ consisted in a set of characters that are used to predict $$y^i$$, the next character.
-The model we used, `n`-grams, consist of look-up-tables that, given $$x^i$$, return an array of normalized probabilities that the model assigns to the next character $$y^i$$ being the first, second,... `L`-th element in the vocabulary.
+Let's consider a dataset of input-label pairs $$\{x^i, y^i\}_{i=1}^N$$ similar to what we considered in the [last post]({% post_url 2022-12-18-likelihood %}). For Italian names, $$x^i$$ consisted of a set of characters that are used to predict $$y^i$$, the next character.
+The model we used, `n`-grams, consists of look-up-tables that, given $$x^i$$, return an array of normalized probabilities that the model assigns to the next character $$y^i$$ being the first, second,... `L`-th element in the vocabulary.
 With the use of some notation, our model $$\mathcal{M}$$ that takes as input the $$x^i$$'s and returns a length-`L` vector of probabilities $$p^i = \mathcal{M}(x^i)$$. Neural networks, as we will see, also fit in this setting.
 
 We recall that the log-likelihood of a given sample corresponds to the negative log probability that the model assigns to the correct class $$y^i$$:
